@@ -1,6 +1,7 @@
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
+import java.net.URL;
 import javax.swing.ImageIcon;
 
 /**
@@ -16,8 +17,16 @@ public class CaseDemineur extends JButton {
     private int minesVoisines = 0;
     private int ligne;
     private int colonne;
-    private ImageIcon imgDrapeau = new ImageIcon("../Image_Sae/Drapeau_img3.png");
-    private ImageIcon imgBombe = new ImageIcon("../Image_Sae/Bombe_img3.png");
+    private ImageIcon imgDrapeau = chargerImage("Drapeau_img3.png");
+    private ImageIcon imgBombe = chargerImage("Bombe_img3.png");
+
+    private ImageIcon chargerImage(String nomFichier) {
+        URL ressource = CaseDemineur.class.getResource("/" + nomFichier);
+        if (ressource != null) {
+            return new ImageIcon(ressource);
+        }
+        return new ImageIcon("../Image_Sae/" + nomFichier);
+    }
 
     /**
      * Crée une case du Démineur.

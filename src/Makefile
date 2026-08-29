@@ -1,5 +1,6 @@
 JAVAC = javac
 JAVA = java
+JAR = jar
 JFLAGS = -implicit:none
 
 # Cibles
@@ -7,6 +8,9 @@ all: CaseDemineur.class EventClicSouris.class OptionJeuEvent.class Grille.class 
 
 run: all
 	$(JAVA) Demineur
+
+jar: all
+	$(JAR) cfe ../Demineur.jar Demineur *.class -C ../Image_Sae Bombe_img3.png -C ../Image_Sae Drapeau_img3.png
 
 # Dépendances de compilation
 CaseDemineur.class: CaseDemineur.java
@@ -37,6 +41,6 @@ Demineur.class: Demineur.java MenuAcceuil.class
 	$(JAVAC) $(JFLAGS) Demineur.java
 
 clean:
-	rm -f *.class sauvegarde.txt
+	rm -f *.class sauvegarde.txt ../Demineur.jar
 
 
